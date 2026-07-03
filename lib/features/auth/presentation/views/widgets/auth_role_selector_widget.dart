@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:education_project_example/core/theme/app_colors.dart';
 import 'package:education_project_example/features/auth/data/models/user_role.dart';
@@ -44,10 +45,10 @@ class _AuthRoleSelectorWidgetState extends State<AuthRoleSelectorWidget> {
   Widget build(BuildContext context) {
     final roles = UserRole.values;
     return Container(
-      padding: const EdgeInsets.all(4),
+      padding: EdgeInsets.all(4.r),
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.r),
       ),
       child: Row(
         children: roles.map((r) {
@@ -57,22 +58,22 @@ class _AuthRoleSelectorWidgetState extends State<AuthRoleSelectorWidget> {
               onTap: () => _onTap(r),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 150),
-                padding: const EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(vertical: 10.h),
                 decoration: BoxDecoration(
                   color: selected ? AppColors.primary : Colors.transparent,
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
                       r.icon,
-                      size: 18,
+                      size: 18.sp,
                       color: selected
                           ? Colors.white
                           : Colors.grey.shade700,
                     ),
-                    const SizedBox(width: 6),
+                    SizedBox(width: 6.w),
                     Text(
                       r.label,
                       style: TextStyle(

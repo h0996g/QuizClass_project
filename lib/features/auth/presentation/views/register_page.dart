@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:education_project_example/core/utils/toast.dart';
 import 'package:education_project_example/features/auth/presentation/manager/register/register_cubit.dart';
@@ -34,7 +35,7 @@ class RegisterPage extends StatelessWidget {
           ),
           body: SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -42,14 +43,14 @@ class RegisterPage extends StatelessWidget {
                     title: 'Create account',
                     subtitle: 'Join us as a student or a teacher',
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24.h),
                   AuthRoleSelectorWidget(
                     role: state.role,
                     onChanged: context.read<RegisterCubit>().onRoleChanged,
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24.h),
                   const RegisterFormWidget(),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16.h),
                   AuthSwitchPromptWidget(
                     promptText: 'Already have an account? ',
                     actionText: 'Login',

@@ -41,6 +41,9 @@ dependencies:
   # Lightweight toast notifications surfaced through `core/utils/toast.dart`.
   fluttertoast: ^8.2.10
 
+  # Responsive sizing (.w/.h/.sp/.r) that adapts layouts across screen sizes.
+  flutter_screenutil: ^5.9.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

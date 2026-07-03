@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:education_project_example/core/utils/validators.dart';
 import 'package:education_project_example/core/widgets/submit_button.dart';
@@ -57,14 +58,14 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                     .titleSmall
                     ?.copyWith(fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 6),
+              SizedBox(height: 6.h),
               TextInput(
                 controller: _nameController,
                 hint: 'Jane Doe',
                 textInputAction: TextInputAction.next,
                 validator: (v) => Validators.required(v, fieldName: 'Name'),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Text(
                 'Email',
                 style: Theme.of(context)
@@ -72,7 +73,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                     .titleSmall
                     ?.copyWith(fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 6),
+              SizedBox(height: 6.h),
               TextInput(
                 controller: _emailController,
                 hint: 'you@example.com',
@@ -80,7 +81,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 textInputAction: TextInputAction.next,
                 validator: Validators.email,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Text(
                 'Password',
                 style: Theme.of(context)
@@ -88,14 +89,14 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                     .titleSmall
                     ?.copyWith(fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 6),
+              SizedBox(height: 6.h),
               TextInputPassword(
                 controller: _passwordController,
                 hint: '••••••••',
                 textInputAction: TextInputAction.next,
                 validator: Validators.password,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Text(
                 'Confirm password',
                 style: Theme.of(context)
@@ -103,7 +104,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                     .titleSmall
                     ?.copyWith(fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 6),
+              SizedBox(height: 6.h),
               TextInputPassword(
                 controller: _confirmController,
                 hint: '••••••••',
@@ -111,17 +112,17 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                     Validators.confirmPassword(v, _passwordController.text),
               ),
               if (state.isError && state.errorMessage != null) ...[
-                const SizedBox(height: 12),
+                SizedBox(height: 12.h),
                 Text(
                   state.errorMessage!,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.error,
-                    fontSize: 13,
+                    fontSize: 13.sp,
                   ),
                   textAlign: TextAlign.center,
                 ),
               ],
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
               SubmitButton(
                 label: 'Create account',
                 onPressed: _submit,

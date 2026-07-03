@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthHeaderWidget extends StatelessWidget {
   const AuthHeaderWidget({super.key, required this.title, this.subtitle});
@@ -11,7 +12,7 @@ class AuthHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 8),
+        SizedBox(height: 8.h),
         Text(
           title,
           style: Theme.of(
@@ -19,7 +20,7 @@ class AuthHeaderWidget extends StatelessWidget {
           ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
         ),
         if (subtitle != null) ...[
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
           Text(
             subtitle!,
             textAlign: TextAlign.center,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:education_project_example/core/utils/validators.dart';
 import 'package:education_project_example/core/widgets/submit_button.dart';
 import 'package:education_project_example/core/widgets/text_input.dart';
@@ -51,14 +52,14 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                     .titleSmall
                     ?.copyWith(fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 6),
+              SizedBox(height: 6.h),
               TextInput(
                 controller: _emailController,
                 hint: 'you@example.com',
                 keyboardType: TextInputType.emailAddress,
                 validator: Validators.email,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Text(
                 'Password',
                 style: Theme.of(context)
@@ -66,24 +67,24 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                     .titleSmall
                     ?.copyWith(fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 6),
+              SizedBox(height: 6.h),
               TextInputPassword(
                 controller: _passwordController,
                 hint: '••••••••',
                 validator: Validators.password,
               ),
               if (state.isError && state.errorMessage != null) ...[
-                const SizedBox(height: 12),
+                SizedBox(height: 12.h),
                 Text(
                   state.errorMessage!,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.error,
-                    fontSize: 13,
+                    fontSize: 13.sp,
                   ),
                   textAlign: TextAlign.center,
                 ),
               ],
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
               SubmitButton(
                 label: 'Login',
                 onPressed: _submit,

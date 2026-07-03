@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:education_project_example/core/utils/toast.dart';
 import 'package:education_project_example/features/auth/presentation/manager/login/login_cubit.dart';
@@ -26,7 +27,7 @@ class LoginPage extends StatelessWidget {
         return Scaffold(
           body: SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -34,14 +35,14 @@ class LoginPage extends StatelessWidget {
                     title: 'Welcome back',
                     subtitle: 'Login to continue to your account',
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24.h),
                   AuthRoleSelectorWidget(
                     role: state.role,
                     onChanged: context.read<LoginCubit>().onRoleChanged,
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24.h),
                   const LoginFormWidget(),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16.h),
                   AuthSwitchPromptWidget(
                     promptText: "Don't have an account? ",
                     actionText: 'Register',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextInput extends StatelessWidget {
   const TextInput({
@@ -30,7 +31,7 @@ class TextInput extends StatelessWidget {
       children: [
         if (label != null) ...[
           _FieldLabel(label!),
-          const SizedBox(height: 6),
+          SizedBox(height: 6.h),
         ],
         TextFormField(
           controller: controller,
