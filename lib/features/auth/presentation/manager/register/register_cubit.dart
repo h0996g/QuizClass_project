@@ -11,7 +11,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   void onRoleChanged(UserRole role) => emit(state.copyWith(role: role));
 
-  Future<void> submit({
+  Future<void> register({
     required String name,
     required String email,
     required String password,
@@ -21,32 +21,28 @@ class RegisterCubit extends Cubit<RegisterState> {
     try {
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      final uid = credential.user!.uid;
       final user = UserModel(
-        id: uid,
+        id: credential.user!.uid,
         name: name,
         email: email,
         role: state.role,
       );
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(uid)
-          .set(user.toMap());
-      emit(state.copyWith(status: RegisterStatus.success, user: user));
-    } on FirebaseAuthException catch (e) {
+      await _saveUserProfile(user);
+    } catch (e) {
       emit(
         state.copyWith(
           status: RegisterStatus.error,
           errorMessage: e.toString(),
         ),
       );
-    } catch (_) {
-      emit(
-        state.copyWith(
-          status: RegisterStatus.error,
-          errorMessage: 'Something went wrong. Please try again.',
-        ),
-      );
     }
+  }
+
+  Future<void> _saveUserProfile(UserModel user) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.id)
+        .set(user.toMap());
+    emit(state.copyWith(status: RegisterStatus.success, user: user));
   }
 }

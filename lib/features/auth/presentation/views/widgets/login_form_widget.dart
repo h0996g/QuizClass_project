@@ -30,7 +30,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
 
   void _submit() {
     if (_formKey.currentState?.validate() ?? false) {
-      context.read<LoginCubit>().submit(
+      context.read<LoginCubit>().login(
         email: _emailController.text,
         password: _passwordController.text,
       );

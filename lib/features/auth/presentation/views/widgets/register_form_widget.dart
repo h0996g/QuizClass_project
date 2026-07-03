@@ -35,7 +35,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 
   void _submit() {
     if (_formKey.currentState?.validate() ?? false) {
-      context.read<RegisterCubit>().submit(
+      context.read<RegisterCubit>().register(
         name: _nameController.text,
         email: _emailController.text,
         password: _passwordController.text,
