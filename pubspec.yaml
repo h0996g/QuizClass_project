@@ -43,6 +43,7 @@ dependencies:
 
   # Responsive sizing (.w/.h/.sp/.r) that adapts layouts across screen sizes.
   flutter_screenutil: ^5.9.3
+  firebase_core: ^4.11.0
 
 dev_dependencies:
   flutter_test:

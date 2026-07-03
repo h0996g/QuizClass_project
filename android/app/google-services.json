@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "479243495208",
+    "project_id": "quizclass-2da6c",
+    "storage_bucket": "quizclass-2da6c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479243495208:android:955e022e646b03270a521d",
+        "android_client_info": {
+          "package_name": "com.example.education_project_example"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjK0pBMAkRZKZmGWTKgH-81PfdIOZ5yG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
