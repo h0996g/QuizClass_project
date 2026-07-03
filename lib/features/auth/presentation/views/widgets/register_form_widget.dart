@@ -52,22 +52,16 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                'Full name',
-                style: AppTextStyles.fieldLabel,
-              ),
+              Text('Full name', style: AppTextStyles.fieldLabel),
               SizedBox(height: 6.h),
               TextInput(
                 controller: _nameController,
-                hint: 'Jane Doe',
+                hint: 'Your Name',
                 textInputAction: TextInputAction.next,
                 validator: (v) => Validators.required(v, fieldName: 'Name'),
               ),
               SizedBox(height: 16.h),
-              Text(
-                'Email',
-                style: AppTextStyles.fieldLabel,
-              ),
+              Text('Email', style: AppTextStyles.fieldLabel),
               SizedBox(height: 6.h),
               TextInput(
                 controller: _emailController,
@@ -77,10 +71,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 validator: Validators.email,
               ),
               SizedBox(height: 16.h),
-              Text(
-                'Password',
-                style: AppTextStyles.fieldLabel,
-              ),
+              Text('Password', style: AppTextStyles.fieldLabel),
               SizedBox(height: 6.h),
               TextInputPassword(
                 controller: _passwordController,
@@ -89,10 +80,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 validator: Validators.password,
               ),
               SizedBox(height: 16.h),
-              Text(
-                'Confirm password',
-                style: AppTextStyles.fieldLabel,
-              ),
+              Text('Confirm password', style: AppTextStyles.fieldLabel),
               SizedBox(height: 6.h),
               TextInputPassword(
                 controller: _confirmController,

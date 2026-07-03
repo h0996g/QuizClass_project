@@ -33,4 +33,9 @@ class RegisterState {
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
+
+  @override
+  String toString() {
+    return 'RegisterState(role: $role, status: $status, user: $user, errorMessage: $errorMessage)';
+  }
 }

@@ -24,4 +24,9 @@ class LoginState {
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
+
+  @override
+  String toString() {
+    return 'LoginState(status: $status, user: $user, errorMessage: $errorMessage)';
+  }
 }
