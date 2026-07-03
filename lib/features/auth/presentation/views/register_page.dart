@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:education_project_example/core/utils/toast.dart';
+import 'package:education_project_example/features/auth/presentation/manager/register/register_cubit.dart';
+import 'package:education_project_example/features/auth/presentation/manager/register/register_state.dart';
+import 'widgets/auth_header_widget.dart';
+import 'widgets/auth_role_selector_widget.dart';
+import 'widgets/register_form_widget.dart';
+
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<RegisterCubit, RegisterState>(
+      listenWhen: (prev, curr) => curr.isSuccess,
+      listener: (context, state) {
+        AppToast.show(
+          'Account created for ${state.user?.email}!',
+          AppToastType.success,
+        );
+        Navigator.of(context).pop();
+      },
+      buildWhen: (prev, curr) => prev.role != curr.role,
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ),
+          body: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const AuthHeaderWidget(
+                    title: 'Create account',
+                    subtitle: 'Join us as a student or a teacher',
+                  ),
+                  const SizedBox(height: 24),
+                  AuthRoleSelectorWidget(
+                    role: state.role,
+                    onChanged: context.read<RegisterCubit>().onRoleChanged,
+                  ),
+                  const SizedBox(height: 24),
+                  const RegisterFormWidget(),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Already have an account? '),
+                      GestureDetector(
+                        onTap: () => Navigator.of(context).pop(),
+                        child: Text(
+                          'Login',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
