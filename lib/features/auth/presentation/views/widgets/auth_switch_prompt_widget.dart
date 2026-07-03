@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:education_project_example/core/theme/app_text_styles.dart';
+
 class AuthSwitchPromptWidget extends StatelessWidget {
   const AuthSwitchPromptWidget({
     super.key,
@@ -22,13 +24,7 @@ class AuthSwitchPromptWidget extends StatelessWidget {
         Text(promptText),
         GestureDetector(
           onTap: onActionTap,
-          child: Text(
-            actionText,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          child: Text(actionText, style: AppTextStyles.linkAction),
         ),
       ],
     );

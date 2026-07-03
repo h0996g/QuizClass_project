@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:education_project_example/core/theme/app_text_styles.dart';
 import 'package:education_project_example/core/utils/validators.dart';
 import 'package:education_project_example/core/widgets/submit_button.dart';
 import 'package:education_project_example/core/widgets/text_input.dart';
@@ -47,10 +48,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
             children: [
               Text(
                 'Email',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall
-                    ?.copyWith(fontWeight: FontWeight.w600),
+                style: AppTextStyles.fieldLabel,
               ),
               SizedBox(height: 6.h),
               TextInput(
@@ -62,10 +60,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               SizedBox(height: 16.h),
               Text(
                 'Password',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall
-                    ?.copyWith(fontWeight: FontWeight.w600),
+                style: AppTextStyles.fieldLabel,
               ),
               SizedBox(height: 6.h),
               TextInputPassword(
@@ -73,14 +68,12 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                 hint: '••••••••',
                 validator: Validators.password,
               ),
-              if (state.isError && state.errorMessage != null) ...[
+              if (state.status == LoginStatus.error &&
+                  state.errorMessage != null) ...[
                 SizedBox(height: 12.h),
                 Text(
                   state.errorMessage!,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.error,
-                    fontSize: 13.sp,
-                  ),
+                  style: AppTextStyles.errorText,
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -88,7 +81,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               SubmitButton(
                 label: 'Login',
                 onPressed: _submit,
-                isLoading: state.isLoading,
+                isLoading: state.status == LoginStatus.loading,
               ),
             ],
           ),

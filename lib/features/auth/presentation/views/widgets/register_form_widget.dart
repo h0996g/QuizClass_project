@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:education_project_example/core/theme/app_text_styles.dart';
 import 'package:education_project_example/core/utils/validators.dart';
 import 'package:education_project_example/core/widgets/submit_button.dart';
 import 'package:education_project_example/core/widgets/text_input.dart';
@@ -53,10 +54,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
             children: [
               Text(
                 'Full name',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall
-                    ?.copyWith(fontWeight: FontWeight.w600),
+                style: AppTextStyles.fieldLabel,
               ),
               SizedBox(height: 6.h),
               TextInput(
@@ -68,10 +66,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
               SizedBox(height: 16.h),
               Text(
                 'Email',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall
-                    ?.copyWith(fontWeight: FontWeight.w600),
+                style: AppTextStyles.fieldLabel,
               ),
               SizedBox(height: 6.h),
               TextInput(
@@ -84,10 +79,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
               SizedBox(height: 16.h),
               Text(
                 'Password',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall
-                    ?.copyWith(fontWeight: FontWeight.w600),
+                style: AppTextStyles.fieldLabel,
               ),
               SizedBox(height: 6.h),
               TextInputPassword(
@@ -99,10 +91,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
               SizedBox(height: 16.h),
               Text(
                 'Confirm password',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall
-                    ?.copyWith(fontWeight: FontWeight.w600),
+                style: AppTextStyles.fieldLabel,
               ),
               SizedBox(height: 6.h),
               TextInputPassword(
@@ -115,10 +104,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 SizedBox(height: 12.h),
                 Text(
                   state.errorMessage!,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.error,
-                    fontSize: 13.sp,
-                  ),
+                  style: AppTextStyles.errorText,
                   textAlign: TextAlign.center,
                 ),
               ],

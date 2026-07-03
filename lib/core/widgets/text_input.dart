@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:education_project_example/core/theme/app_text_styles.dart';
+
 class TextInput extends StatelessWidget {
   const TextInput({
     super.key,
@@ -57,12 +59,6 @@ class _FieldLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context)
-          .textTheme
-          .titleSmall
-          ?.copyWith(fontWeight: FontWeight.w600),
-    );
+    return Text(text, style: AppTextStyles.fieldLabel);
   }
 }

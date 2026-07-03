@@ -1,5 +1,5 @@
 class AppConstants {
   static const int minPasswordLength = 6;
 
-  static const int mockNetworkDelayMs = 1000;
+  static const int mockNetworkDelayMs = 5000;
 }

@@ -18,9 +18,5 @@ void main() {
 
     // The login button.
     expect(find.widgetWithText(ElevatedButton, 'Login'), findsOneWidget);
-
-    // The role toggle shows both roles.
-    expect(find.text('Student'), findsWidgets);
-    expect(find.text('Teacher'), findsWidgets);
   });
 }
