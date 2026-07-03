@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:education_project_example/core/utils/toast.dart';
 import 'package:education_project_example/features/auth/presentation/manager/register/register_cubit.dart';
 import 'package:education_project_example/features/auth/presentation/manager/register/register_state.dart';
+import 'package:education_project_example/features/home/presentation/views/home_page.dart';
 import 'widgets/auth_header_widget.dart';
 import 'widgets/auth_role_selector_widget.dart';
 import 'widgets/auth_switch_prompt_widget.dart';
@@ -16,13 +17,23 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterCubit, RegisterState>(
-      listenWhen: (prev, curr) => curr.isSuccess,
+      listenWhen: (prev, curr) => curr.isSuccess || curr.isError,
       listener: (context, state) {
+        if (state.isError) {
+          AppToast.show(
+            state.errorMessage ?? 'Registration failed',
+            AppToastType.error,
+          );
+          return;
+        }
         AppToast.show(
           'Account created for ${state.user?.email}!',
           AppToastType.success,
         );
-        Navigator.of(context).pop();
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => const HomePage()),
+          (route) => false,
+        );
       },
       buildWhen: (prev, curr) => prev.role != curr.role,
       builder: (context, state) {

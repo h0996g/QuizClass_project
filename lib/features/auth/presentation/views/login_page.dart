@@ -6,6 +6,7 @@ import 'package:education_project_example/core/utils/toast.dart';
 import 'package:education_project_example/features/auth/presentation/manager/login/login_cubit.dart';
 import 'package:education_project_example/features/auth/presentation/manager/login/login_state.dart';
 import 'package:education_project_example/features/auth/presentation/manager/register/register_cubit.dart';
+import 'package:education_project_example/features/home/presentation/views/home_page.dart';
 import 'widgets/auth_header_widget.dart';
 import 'widgets/auth_switch_prompt_widget.dart';
 import 'widgets/login_form_widget.dart';
@@ -17,9 +18,21 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
-      listenWhen: (prev, curr) => curr.status == LoginStatus.success,
+      listenWhen: (prev, curr) =>
+          curr.status == LoginStatus.success ||
+          curr.status == LoginStatus.error,
       listener: (context, state) {
+        if (state.status == LoginStatus.error) {
+          AppToast.show(
+            state.errorMessage ?? 'Login failed',
+            AppToastType.error,
+          );
+          return;
+        }
         AppToast.show('Welcome ${state.user?.name}!', AppToastType.success);
+        Navigator.of(
+          context,
+        ).pushReplacement(MaterialPageRoute(builder: (_) => const HomePage()));
       },
       child: Scaffold(
         body: SafeArea(
@@ -28,6 +41,7 @@ class LoginPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                SizedBox(height: 40.h),
                 const AuthHeaderWidget(
                   title: 'Welcome back',
                   subtitle: 'Login to continue to your account',

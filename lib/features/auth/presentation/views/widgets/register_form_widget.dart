@@ -100,14 +100,6 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
                 validator: (v) =>
                     Validators.confirmPassword(v, _passwordController.text),
               ),
-              if (state.isError && state.errorMessage != null) ...[
-                SizedBox(height: 12.h),
-                Text(
-                  state.errorMessage!,
-                  style: AppTextStyles.errorText,
-                  textAlign: TextAlign.center,
-                ),
-              ],
               SizedBox(height: 24.h),
               SubmitButton(
                 label: 'Create account',

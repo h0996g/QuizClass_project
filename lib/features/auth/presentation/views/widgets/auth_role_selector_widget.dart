@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:education_project_example/core/theme/app_colors.dart';
 import 'package:education_project_example/features/auth/data/models/user_role.dart';
 
-class AuthRoleSelectorWidget extends StatefulWidget {
+class AuthRoleSelectorWidget extends StatelessWidget {
   const AuthRoleSelectorWidget({
     super.key,
     required this.role,
@@ -14,36 +14,26 @@ class AuthRoleSelectorWidget extends StatefulWidget {
   final UserRole role;
   final ValueChanged<UserRole> onChanged;
 
-  @override
-  State<AuthRoleSelectorWidget> createState() => _AuthRoleSelectorWidgetState();
-}
-
-class _AuthRoleSelectorWidgetState extends State<AuthRoleSelectorWidget> {
-  late UserRole _selected;
-
-  @override
-  void initState() {
-    super.initState();
-    _selected = widget.role;
-  }
-
-  @override
-  void didUpdateWidget(AuthRoleSelectorWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.role != widget.role) {
-      _selected = widget.role;
+  String _labelFor(UserRole role) {
+    switch (role) {
+      case UserRole.student:
+        return 'Student';
+      case UserRole.teacher:
+        return 'Teacher';
     }
   }
 
-  void _onTap(UserRole role) {
-    if (_selected == role) return;
-    setState(() => _selected = role);
-    widget.onChanged(role);
+  IconData _iconFor(UserRole role) {
+    switch (role) {
+      case UserRole.student:
+        return Icons.school_outlined;
+      case UserRole.teacher:
+        return Icons.co_present_outlined;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final roles = UserRole.values;
     return Container(
       padding: EdgeInsets.all(4.r),
       decoration: BoxDecoration(
@@ -51,11 +41,11 @@ class _AuthRoleSelectorWidgetState extends State<AuthRoleSelectorWidget> {
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Row(
-        children: roles.map((r) {
-          final selected = r == _selected;
+        children: UserRole.values.map((r) {
+          final selected = r == role;
           return Expanded(
             child: GestureDetector(
-              onTap: () => _onTap(r),
+              onTap: () => onChanged(r),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 150),
                 padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -67,22 +57,17 @@ class _AuthRoleSelectorWidgetState extends State<AuthRoleSelectorWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      r.icon,
+                      _iconFor(r),
                       size: 18.sp,
-                      color: selected
-                          ? Colors.white
-                          : Colors.grey.shade700,
+                      color: selected ? Colors.white : Colors.grey.shade700,
                     ),
                     SizedBox(width: 6.w),
                     Text(
-                      r.label,
+                      _labelFor(r),
                       style: TextStyle(
-                        color: selected
-                            ? Colors.white
-                            : Colors.grey.shade700,
-                        fontWeight: selected
-                            ? FontWeight.w600
-                            : FontWeight.normal,
+                        color: selected ? Colors.white : Colors.grey.shade700,
+                        fontWeight:
+                            selected ? FontWeight.w600 : FontWeight.normal,
                       ),
                     ),
                   ],

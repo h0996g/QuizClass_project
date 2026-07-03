@@ -4,17 +4,17 @@ import 'package:education_project_example/features/auth/data/models/user_role.da
 enum RegisterStatus { initial, loading, success, error }
 
 class RegisterState {
+  final UserRole role;
+  final RegisterStatus status;
+  final UserModel? user;
+  final String? errorMessage;
+
   const RegisterState({
     this.role = UserRole.student,
     this.status = RegisterStatus.initial,
     this.user,
     this.errorMessage,
   });
-
-  final UserRole role;
-  final RegisterStatus status;
-  final UserModel? user;
-  final String? errorMessage;
 
   bool get isLoading => status == RegisterStatus.loading;
   bool get isSuccess => status == RegisterStatus.success;

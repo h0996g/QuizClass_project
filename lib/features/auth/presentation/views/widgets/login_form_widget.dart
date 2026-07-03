@@ -68,15 +68,6 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                 hint: '••••••••',
                 validator: Validators.password,
               ),
-              if (state.status == LoginStatus.error &&
-                  state.errorMessage != null) ...[
-                SizedBox(height: 12.h),
-                Text(
-                  state.errorMessage!,
-                  style: AppTextStyles.errorText,
-                  textAlign: TextAlign.center,
-                ),
-              ],
               SizedBox(height: 24.h),
               SubmitButton(
                 label: 'Login',
