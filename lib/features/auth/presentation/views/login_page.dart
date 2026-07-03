@@ -7,6 +7,7 @@ import 'package:education_project_example/features/auth/presentation/manager/log
 import 'package:education_project_example/features/auth/presentation/manager/register/register_cubit.dart';
 import 'widgets/auth_header_widget.dart';
 import 'widgets/auth_role_selector_widget.dart';
+import 'widgets/auth_switch_prompt_widget.dart';
 import 'widgets/login_form_widget.dart';
 import 'register_page.dart';
 
@@ -41,30 +42,19 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: 24),
                   const LoginFormWidget(),
                   const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text("Don't have an account? "),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => BlocProvider(
-                                create: (_) => RegisterCubit(),
-                                child: const RegisterPage(),
-                              ),
-                            ),
-                          );
-                        },
-                        child: Text(
-                          'Register',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.w600,
+                  AuthSwitchPromptWidget(
+                    promptText: "Don't have an account? ",
+                    actionText: 'Register',
+                    onActionTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => BlocProvider(
+                            create: (_) => RegisterCubit(),
+                            child: const RegisterPage(),
                           ),
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
                 ],
               ),

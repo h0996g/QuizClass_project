@@ -6,6 +6,7 @@ import 'package:education_project_example/features/auth/presentation/manager/reg
 import 'package:education_project_example/features/auth/presentation/manager/register/register_state.dart';
 import 'widgets/auth_header_widget.dart';
 import 'widgets/auth_role_selector_widget.dart';
+import 'widgets/auth_switch_prompt_widget.dart';
 import 'widgets/register_form_widget.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -49,21 +50,10 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(height: 24),
                   const RegisterFormWidget(),
                   const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Already have an account? '),
-                      GestureDetector(
-                        onTap: () => Navigator.of(context).pop(),
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ],
+                  AuthSwitchPromptWidget(
+                    promptText: 'Already have an account? ',
+                    actionText: 'Login',
+                    onActionTap: () => Navigator.of(context).pop(),
                   ),
                 ],
               ),
