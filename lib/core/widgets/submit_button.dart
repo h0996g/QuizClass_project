@@ -36,25 +36,17 @@ class SubmitButton extends StatelessWidget {
             fontWeight: FontWeight.w600,
             letterSpacing: 0.3,
           ),
-        ).copyWith(
-          elevation: WidgetStateProperty.resolveWith(
-            (states) => states.contains(WidgetState.pressed) ? 0 : 4,
-          ),
         ),
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 200),
-          child: isLoading
-              ? SizedBox(
-                  key: const ValueKey('loading'),
-                  height: 22.h,
-                  width: 22.w,
-                  child: const CircularProgressIndicator(
-                    strokeWidth: 2,
-                    color: Colors.white,
-                  ),
-                )
-              : Text(label, key: const ValueKey('label')),
-        ),
+        child: isLoading
+            ? SizedBox(
+                height: 22.h,
+                width: 22.w,
+                child: const CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Colors.white,
+                ),
+              )
+            : Text(label),
       ),
     );
   }

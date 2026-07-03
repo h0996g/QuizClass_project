@@ -14,24 +14,6 @@ class AuthRoleSelectorWidget extends StatelessWidget {
   final UserRole role;
   final ValueChanged<UserRole> onChanged;
 
-  String _labelFor(UserRole role) {
-    switch (role) {
-      case UserRole.student:
-        return 'Student';
-      case UserRole.teacher:
-        return 'Teacher';
-    }
-  }
-
-  IconData _iconFor(UserRole role) {
-    switch (role) {
-      case UserRole.student:
-        return Icons.school_outlined;
-      case UserRole.teacher:
-        return Icons.co_present_outlined;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,41 +23,57 @@ class AuthRoleSelectorWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Row(
-        children: UserRole.values.map((r) {
-          final selected = r == role;
-          return Expanded(
-            child: GestureDetector(
-              onTap: () => onChanged(r),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 150),
-                padding: EdgeInsets.symmetric(vertical: 10.h),
-                decoration: BoxDecoration(
-                  color: selected ? AppColors.primary : Colors.transparent,
-                  borderRadius: BorderRadius.circular(8.r),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      _iconFor(r),
-                      size: 18.sp,
-                      color: selected ? Colors.white : Colors.grey.shade700,
-                    ),
-                    SizedBox(width: 6.w),
-                    Text(
-                      _labelFor(r),
-                      style: TextStyle(
-                        color: selected ? Colors.white : Colors.grey.shade700,
-                        fontWeight:
-                            selected ? FontWeight.w600 : FontWeight.normal,
-                      ),
-                    ),
-                  ],
+        children: [
+          _buildOption(
+            role: UserRole.student,
+            label: 'Student',
+            icon: Icons.school_outlined,
+          ),
+          _buildOption(
+            role: UserRole.teacher,
+            label: 'Teacher',
+            icon: Icons.co_present_outlined,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildOption({
+    required UserRole role,
+    required String label,
+    required IconData icon,
+  }) {
+    final selected = role == this.role;
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => onChanged(role),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          padding: EdgeInsets.symmetric(vertical: 10.h),
+          decoration: BoxDecoration(
+            color: selected ? AppColors.primary : Colors.transparent,
+            borderRadius: BorderRadius.circular(8.r),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 18.sp,
+                color: selected ? Colors.white : Colors.grey.shade700,
+              ),
+              SizedBox(width: 6.w),
+              Text(
+                label,
+                style: TextStyle(
+                  color: selected ? Colors.white : Colors.grey.shade700,
+                  fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
                 ),
               ),
-            ),
-          );
-        }).toList(),
+            ],
+          ),
+        ),
       ),
     );
   }
