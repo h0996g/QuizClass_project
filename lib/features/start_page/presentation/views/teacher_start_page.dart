@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:education_project_example/core/widgets/submit_button.dart';
 import 'package:education_project_example/features/auth/presentation/manager/login/login_cubit.dart';
 import 'package:education_project_example/features/auth/presentation/views/login_page.dart';
+import 'package:education_project_example/features/profile/presentation/views/profile_teacher_page.dart';
 import 'package:education_project_example/features/start_page/presentation/manager/teacher_start/teacher_start_cubit.dart';
 import 'package:education_project_example/features/start_page/presentation/manager/teacher_start/teacher_start_state.dart';
 
@@ -29,10 +30,12 @@ class TeacherStartPage extends StatelessWidget {
     return BlocBuilder<TeacherStartCubit, TeacherStartState>(
       builder: (context, state) {
         return Scaffold(
-          body: SafeArea(
-            child: state.currentIndex == 0
-                ? _HomeTab(onSignOut: () => _signOut(context))
-                : const Center(child: Text('Profile')),
+          body: IndexedStack(
+            index: state.currentIndex,
+            children: [
+              _HomeTab(onSignOut: () => _signOut(context)),
+              ProfileTeacherPage(state: state),
+            ],
           ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: state.currentIndex,
