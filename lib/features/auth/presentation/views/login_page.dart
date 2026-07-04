@@ -3,10 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:education_project_example/core/utils/toast.dart';
+import 'package:education_project_example/features/auth/data/models/user_role.dart';
 import 'package:education_project_example/features/auth/presentation/manager/login/login_cubit.dart';
 import 'package:education_project_example/features/auth/presentation/manager/login/login_state.dart';
 import 'package:education_project_example/features/auth/presentation/manager/register/register_cubit.dart';
-import 'package:education_project_example/features/home/presentation/views/home_page.dart';
+import 'package:education_project_example/features/start_page/presentation/manager/student_start/student_start_cubit.dart';
+import 'package:education_project_example/features/start_page/presentation/manager/teacher_start/teacher_start_cubit.dart';
+import 'package:education_project_example/features/start_page/presentation/views/student_start_page.dart';
+import 'package:education_project_example/features/start_page/presentation/views/teacher_start_page.dart';
 import 'widgets/auth_header_widget.dart';
 import 'widgets/auth_switch_prompt_widget.dart';
 import 'widgets/login_form_widget.dart';
@@ -30,9 +34,20 @@ class LoginPage extends StatelessWidget {
           return;
         }
         AppToast.show('Welcome ${state.user?.name}!', AppToastType.success);
-        Navigator.of(
-          context,
-        ).pushReplacement(MaterialPageRoute(builder: (_) => const HomePage()));
+        final isTeacher = state.user?.role == UserRole.teacher;
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (_) => isTeacher
+                ? BlocProvider(
+                    create: (_) => TeacherStartCubit(),
+                    child: const TeacherStartPage(),
+                  )
+                : BlocProvider(
+                    create: (_) => StudentStartCubit(),
+                    child: const StudentStartPage(),
+                  ),
+          ),
+        );
       },
       child: Scaffold(
         body: SafeArea(
