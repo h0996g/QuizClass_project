@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:education_project_example/core/theme/app_text_styles.dart';
+import '../theme/app_colors.dart';
 
 class TextInput extends StatelessWidget {
   const TextInput({
@@ -28,37 +28,42 @@ class TextInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (label != null) ...[
-          _FieldLabel(label!),
-          SizedBox(height: 6.h),
-        ],
-        TextFormField(
-          controller: controller,
-          keyboardType: keyboardType,
-          textInputAction: textInputAction,
-          obscureText: obscureText,
-          validator: validator,
+    return TextFormField(
+      controller: controller,
+      keyboardType: keyboardType,
+      textInputAction: textInputAction,
+      obscureText: obscureText,
+      validator: validator,
           decoration: InputDecoration(
             hintText: hint,
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding:
+                EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
             prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
+            prefixIconColor: AppColors.primary,
             suffixIcon: suffixIcon,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12.r)),
+              borderSide: const BorderSide(color: Color(0xFFE5E7EB)),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12.r)),
+              borderSide: const BorderSide(color: Color(0xFFE5E7EB)),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12.r)),
+              borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12.r)),
+              borderSide: const BorderSide(color: AppColors.error),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12.r)),
+              borderSide: const BorderSide(color: AppColors.error, width: 1.5),
+            ),
           ),
-        ),
-      ],
     );
-  }
-}
-
-class _FieldLabel extends StatelessWidget {
-  const _FieldLabel(this.text);
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(text, style: AppTextStyles.fieldLabel);
   }
 }
