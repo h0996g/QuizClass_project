@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:education_project_example/core/constants/cache_keys.dart';
+import 'package:education_project_example/core/helper/cache_helper.dart';
 import 'package:education_project_example/features/auth/data/models/user_model.dart';
 import 'login_state.dart';
 
@@ -38,11 +40,10 @@ class LoginCubit extends Cubit<LoginState> {
       );
       return;
     }
-    emit(
-      state.copyWith(
-        status: LoginStatus.success,
-        user: UserModel.fromMap(uid, doc.data()!),
-      ),
-    );
+    final user = UserModel.fromMap(uid, doc.data()!);
+
+    await CacheHelper.putCache(key: CacheKeys.userRole, value: user.role?.name);
+
+    emit(state.copyWith(status: LoginStatus.success, user: user));
   }
 }

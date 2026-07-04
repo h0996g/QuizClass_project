@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:education_project_example/core/constants/cache_keys.dart';
+import 'package:education_project_example/core/helper/cache_helper.dart';
 import 'package:education_project_example/features/auth/data/models/user_model.dart';
 import 'package:education_project_example/features/auth/data/models/user_role.dart';
 import 'register_state.dart';
@@ -43,6 +45,9 @@ class RegisterCubit extends Cubit<RegisterState> {
         .collection('users')
         .doc(user.id)
         .set(user.toMap());
+
+    await CacheHelper.putCache(key: CacheKeys.userRole, value: user.role?.name);
+
     emit(state.copyWith(status: RegisterStatus.success, user: user));
   }
 }

@@ -1,3 +1,4 @@
+import 'package:education_project_example/core/helper/cache_helper.dart';
 import 'package:education_project_example/core/helper/observer.dart';
 import 'package:education_project_example/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -11,6 +12,7 @@ import 'features/auth/presentation/views/login_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
+  await CacheHelper.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const EducationApp());
 }
