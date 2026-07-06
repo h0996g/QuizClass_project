@@ -18,7 +18,7 @@ class UserModel {
       id: id,
       name: map['name'],
       email: map['email'],
-      role: (map['role'] as String?).toUserRole(),
+      role: toUserRole(map['role']),
     );
   }
 

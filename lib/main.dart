@@ -49,7 +49,8 @@ class EducationApp extends StatelessWidget {
         child: const LoginPage(),
       );
     }
-    final isTeacher = CacheHelper.getData(key: CacheKeys.userRole) == 'teacher';
+    final bool isTeacher =
+        CacheHelper.getData(key: CacheKeys.userRole) == 'teacher';
     if (isTeacher) {
       return BlocProvider(
         create: (_) => TeacherStartCubit(),

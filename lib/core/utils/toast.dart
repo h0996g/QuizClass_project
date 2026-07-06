@@ -6,8 +6,6 @@ import '../theme/app_colors.dart';
 enum AppToastType { success, error, warning }
 
 class AppToast {
-  const AppToast._();
-
   static Future<void> show(String message, AppToastType type) {
     return Fluttertoast.showToast(
       msg: message,
