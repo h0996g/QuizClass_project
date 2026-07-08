@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:education_project_example/features/home/presentation/views/home_student_page.dart';
+import 'package:education_project_example/features/lessons/presentation/views/student_lessons_page.dart';
 import 'package:education_project_example/features/profile/presentation/views/profile_student_page.dart';
 import 'package:education_project_example/features/start_page/presentation/manager/student_start/student_start_cubit.dart';
 import 'package:education_project_example/features/start_page/presentation/manager/student_start/student_start_state.dart';
@@ -18,6 +19,7 @@ class StudentStartPage extends StatelessWidget {
             index: state.currentIndex,
             children: [
               const HomeStudentPage(),
+              const StudentLessonsPage(),
               ProfileStudentPage(state: state),
             ],
           ),
@@ -27,6 +29,10 @@ class StudentStartPage extends StatelessWidget {
                 context.read<StudentStartCubit>().changeIndex(index),
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.menu_book),
+                label: 'Lesson',
+              ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
                 label: 'Profile',
